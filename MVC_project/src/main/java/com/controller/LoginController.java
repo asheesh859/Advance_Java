@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import com.model.DBserviceImp;
@@ -28,18 +30,18 @@ public class LoginController extends HttpServlet {
 		System.out.println("post request");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		System.out.println(email);
-		System.out.println(password);
 
 		try {
 			
 			DBserviceImp db = new DBserviceImp();
 			db.connectionDB();
 			boolean status = db.verifySignIn(email, password);
-			System.out.println(status);
+			
 			if(status) {
-				
+				HttpSession session = request.getSession(true);
+				session.setAttribute("email", email);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/registration.jsp");
+				rd.forward(request, response);
 			}else {
 				request.setAttribute("error", "invalid email/pasword");
 				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

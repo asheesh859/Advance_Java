@@ -40,6 +40,30 @@ public class DBserviceImp implements DBservice {
 		}
 		return false;
 	}
+
+	@Override
+	public ResultSet getUserIdByEmail(String email) {
+		try {
+			
+			String Query = "SELECT * FROM user WHERE email = '"+email+"'";
+			ResultSet result = smt.executeQuery(Query);
+			
+			return result;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void createRegistration(String name, String course, String mobile, String email, int userId) {
+		try {
+			String Query = "INSERT INTO registration (name , course ,mobile ,email, user_id) VALUES ('"+name+"','"+course+"' ,'"+email+"','"+mobile+"','"+userId+"')";
+			smt.executeUpdate(Query);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }

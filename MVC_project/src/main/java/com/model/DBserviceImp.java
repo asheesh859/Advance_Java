@@ -58,11 +58,24 @@ public class DBserviceImp implements DBservice {
 	@Override
 	public void createRegistration(String name, String course, String mobile, String email, int userId) {
 		try {
-			String Query = "INSERT INTO registration (name , course ,mobile ,email, user_id) VALUES ('"+name+"','"+course+"' ,'"+email+"','"+mobile+"','"+userId+"')";
+			String Query = "INSERT INTO registration (name , course ,mobile ,email, user_id) VALUES ('"+name+"','"+course+"' ,'"+mobile+"','"+email+"','"+userId+"')";
 			smt.executeUpdate(Query);
+		}catch(Exception 	e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ResultSet getRegistrationByUser(int userId) {
+		try {
+			String Query = "Select * from registration where user_id = '"+userId+"'";
+			ResultSet result =smt.executeQuery(Query);
+			return result;
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 

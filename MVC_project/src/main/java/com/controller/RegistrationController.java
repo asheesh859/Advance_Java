@@ -22,7 +22,8 @@ public class RegistrationController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/registration.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	

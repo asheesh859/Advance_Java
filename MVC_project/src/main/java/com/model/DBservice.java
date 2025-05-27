@@ -8,5 +8,6 @@ public interface DBservice {
 	public ResultSet getUserIdByEmail(String email);
 	public void createRegistration(String name , String course , String mobile, String email , int userId);
 	public ResultSet getRegistrationByUser(int userId);
+	public void deleteRegistrationById(int id);
 	
 }

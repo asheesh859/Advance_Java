@@ -77,6 +77,18 @@ public class DBserviceImp implements DBservice {
 		}
 		return null;
 	}
+
+	@Override
+	public void deleteRegistrationById(int id) {
+		try {
+			String query = "delete from registration where id='"+id+"'";
+			smt.executeUpdate(query);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
+		
+	}
 	
 
 }

@@ -69,7 +69,7 @@
         background-color: #f1f1f1;
     }
 
-    .delete-icon {
+    .delete-icon , .update-icon {
         color: red;
         font-weight: bold;
         font-size: 18px;
@@ -80,6 +80,10 @@
     .delete-icon:hover {
         color: darkred;
     }
+    .update-icon:hover {
+        color: darkred;
+    }
+    
 
     @media (max-width: 600px) {
         table, th, td {
@@ -128,6 +132,9 @@
                 <td>
                     <a class="delete-icon" href="DeleteRegistration?id=<%=id%>" onclick="return confirm('Are you sure you want to delete this record?');">
                         ❌
+                    </a>
+                    <a class="update-icon" href="UpdateRegistration?id=<%=id%>">
+                        ✏️
                     </a>
                 </td>
             </tr>

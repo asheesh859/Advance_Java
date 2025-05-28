@@ -9,5 +9,6 @@ public interface DBservice {
 	public void createRegistration(String name , String course , String mobile, String email , int userId);
 	public ResultSet getRegistrationByUser(int userId);
 	public void deleteRegistrationById(int id);
+	public ResultSet getRegistrationRecordById(int _id);
 	
 }

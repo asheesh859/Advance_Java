@@ -89,6 +89,20 @@ public class DBserviceImp implements DBservice {
 			}
 		
 	}
+
+	@Override
+	public ResultSet getRegistrationRecordById(int _id) {
+		try {
+			String query = "Select * from registration where id ='"+_id+"'";
+			ResultSet result = smt.executeQuery(query);
+			return result;
+			
+		}catch(Exception e) {
+			
+		}
+		
+		return null;
+	}
 	
 
 }

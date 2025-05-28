@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 
@@ -41,7 +43,12 @@ public class UpdateRegistration extends HttpServlet {
 				email = _data.getString(4);
 				mobile = _data.getString(5);
 			}
-
+			System.out.println(_id);
+			System.out.println(name);
+			System.out.println(course);
+			System.out.println(email);
+			System.out.println(mobile);
+			
 			request.setAttribute("id", id);
 			request.setAttribute("name", name);
 			request.setAttribute("course", course);
@@ -57,7 +64,38 @@ public class UpdateRegistration extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		try {
+			HttpSession session = request.getSession(false);
+			String email = (String)session.getAttribute("email");
+			
+			int _id = Integer.parseInt(request.getParameter("id"));
+			String _name = request.getParameter("name");
+			String _course = request.getParameter("course");
+			String _email = request.getParameter("email");
+			String _mobile = request.getParameter("mobile");
+			
+			DBserviceImp service = new DBserviceImp();
+			service.connectionDB();
+			
+			
+			service.updateRecord(_id, _name, _course, _email, _mobile);
+			
+			ResultSet result = service.getUserIdByEmail(email);
+			
+			int id = 0;
+				if(result.next()) {
+					id = result.getInt(1);
+				}
+				
+				ResultSet registration = service.getRegistrationByUser(id);
+				request.setAttribute("registration",registration);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/registration_list.jsp");
+				requestDispatcher.forward(request, response);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

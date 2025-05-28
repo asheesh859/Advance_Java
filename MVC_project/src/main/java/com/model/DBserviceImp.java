@@ -93,7 +93,7 @@ public class DBserviceImp implements DBservice {
 	@Override
 	public ResultSet getRegistrationRecordById(int _id) {
 		try {
-			String query = "Select * from registration where id ='"+_id+"'";
+			String query = "Select id , name, course , email , mobile ,user_id from registration where id ='"+_id+"'";
 			ResultSet result = smt.executeQuery(query);
 			return result;
 			
@@ -103,6 +103,15 @@ public class DBserviceImp implements DBservice {
 		
 		return null;
 	}
-	
 
+	@Override
+	public void updateRecord(int _id, String name, String course, String email, String mobile) {
+		String query = "update registration set id='"+_id+"', name = '"+name+"' , course = '"+course+"',email ='"+email+"' , mobile = '"+mobile+"' where id ='"+_id+"'";
+		try {
+			smt.executeUpdate(query);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

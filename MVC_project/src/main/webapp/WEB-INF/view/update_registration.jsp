@@ -123,15 +123,15 @@
         <form action="" method="post">
         
      
-            <h2>Registration Page</h2>
+            <h2>Update Record</h2>
              <label for="name">Id</label>
-            <input type="text" name="name" value=<%=request.getAttribute("id") %> id="name" required />
+            <input  type="text" name="name" value=<%=request.getAttribute("id") %> id="name"  disabled />
 
             <label for="name">Name</label>
-            <input type="text" name="name" value=<%=request.getAttribute("name") %> id="name" required />
+            <input type="text" name="name" value='<%=request.getAttribute("name") %>' id="name" required />
 
             <label for="course">Course</label>
-            <input type="text" name="course" value=<%=request.getAttribute("course")%> id="course" required />
+            <input type="text" name="course" value='<%=request.getAttribute("course")%>' id="course" required />
 
             <label for="email">Email</label>
             <input type="text" name="email" id="email" value=<%=request.getAttribute("email")%> required />

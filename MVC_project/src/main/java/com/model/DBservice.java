@@ -11,4 +11,5 @@ public interface DBservice {
 	public void deleteRegistrationById(int id);
 	public ResultSet getRegistrationRecordById(int _id);
 	
+	public void updateRecord(int _id , String name , String course , String email , String mobile);
 }

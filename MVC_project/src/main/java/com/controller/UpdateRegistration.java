@@ -43,11 +43,6 @@ public class UpdateRegistration extends HttpServlet {
 				email = _data.getString(4);
 				mobile = _data.getString(5);
 			}
-			System.out.println(_id);
-			System.out.println(name);
-			System.out.println(course);
-			System.out.println(email);
-			System.out.println(mobile);
 			
 			request.setAttribute("id", id);
 			request.setAttribute("name", name);

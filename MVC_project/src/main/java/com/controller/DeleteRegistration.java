@@ -33,6 +33,7 @@ public class DeleteRegistration extends HttpServlet {
 			
 			HttpSession session = request.getSession(false);
 			String userEmail = (String)session.getAttribute("email");
+			if(userEmail!=null) {
 			
 			ResultSet userIdByEmail = service.getUserIdByEmail(userEmail);
 			int userID = 0;
@@ -45,8 +46,12 @@ public class DeleteRegistration extends HttpServlet {
 			request.setAttribute("registration", registrationByUser);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/registration_list.jsp");
 			rd.forward(request, response);
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		
 		

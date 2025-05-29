@@ -108,15 +108,67 @@
             margin: 10px 0;
         }
     }
+    
+       .navbar {
+        background-color: #007bff;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+
+    .navbar form {
+        margin: 0;
+    }
+
+    .navbar input[type="submit"] {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar input[type="submit"]:hover {
+        background-color: #e0e0e0;
+    }
 </style>
 </head>
 <body>
 
     <!-- Top-aligned menu -->
-    <div class="navbar">
+     <div class="navbar">
+    <div class="links">
         <a href="RegistrationController">Create Registration</a>
         <a href="ReadRegistration">Show Registrations</a>
     </div>
+   <form action="LogoutController" method="post" style="
+    padding: 0px;
+    width: auto;
+">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
 
 
     <div class="container">
@@ -128,10 +180,10 @@
             <input  type="text" name="name" value=<%=request.getAttribute("id") %> id="name"  disabled />
 
             <label for="name">Name</label>
-            <input type="text" name="name" value='<%=request.getAttribute("name") %>' id="name" required />
+            <input type="text" name="name" value=<%=request.getAttribute("name") %> id="name" required />
 
             <label for="course">Course</label>
-            <input type="text" name="course" value='<%=request.getAttribute("course")%>' id="course" required />
+            <input type="text" name="course" value=<%=request.getAttribute("course")%> id="course" required />
 
             <label for="email">Email</label>
             <input type="text" name="email" id="email" value=<%=request.getAttribute("email")%> required />

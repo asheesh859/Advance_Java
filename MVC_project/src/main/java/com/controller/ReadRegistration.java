@@ -28,7 +28,10 @@ public class ReadRegistration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String email = (String)session.getAttribute("email");
+		
 		try {
+			
+			if(email!=null) {
 			DBserviceImp service = new DBserviceImp();
 			service.connectionDB();
 			ResultSet userIdByEmail = service.getUserIdByEmail(email);
@@ -44,6 +47,13 @@ public class ReadRegistration extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/registration_list.jsp");
 			rd.forward(request, response);
 			
+			
+			}
+			else {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+				requestDispatcher.forward(request, response);
+				
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

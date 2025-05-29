@@ -23,7 +23,13 @@ public class UpdateRegistration extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+			HttpSession session = request.getSession(false);
+			String _email = (String)session.getAttribute("email");
+			
+			
 		try {
+			if(_email!=null) {
 			int _id = Integer.parseInt(request.getParameter("id"));
 
 			DBserviceImp service = new DBserviceImp();
@@ -52,6 +58,11 @@ public class UpdateRegistration extends HttpServlet {
 
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/update_registration.jsp");
 			rd.forward(request, response);
+			
+			}else {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+				requestDispatcher.forward(request, response);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

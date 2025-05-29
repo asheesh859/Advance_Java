@@ -19,23 +19,48 @@
         min-height: 100vh;
     }
 
-    /* Navbar (menu.jsp styling) */
     .navbar {
         background-color: #007bff;
         padding: 15px 20px;
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 15px;
     }
 
     .navbar a {
         color: white;
         text-decoration: none;
-        margin: 0 15px;
         font-weight: bold;
         font-size: 16px;
     }
 
     .navbar a:hover {
         text-decoration: underline;
+    }
+
+    .navbar form {
+        margin: 0;
+    }
+
+    .navbar input[type="submit"] {
+        background-color: white;
+        color: #007bff;
+        border: none;
+        padding: 8px 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar input[type="submit"]:hover {
+        background-color: #e0e0e0;
     }
 
     .container {
@@ -103,19 +128,37 @@
             padding: 20px;
         }
 
-        .navbar a {
-            display: block;
-            margin: 10px 0;
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .navbar .links {
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .navbar input[type="submit"] {
+            width: 100%;
+            margin-top: 10px;
         }
     }
 </style>
 </head>
 <body>
 
-    <!-- Top-aligned menu -->
+    <!-- Top-aligned menu with right-aligned Logout -->
     <div class="navbar">
-        <a href="RegistrationController">Create Registration</a>
-        <a href="ReadRegistration">Show Registrations</a>
+        <div class="links">
+            <a href="RegistrationController">Create Registration</a>
+            <a href="ReadRegistration">Show Registrations</a>
+        </div>
+        <form action="LogoutController" method="post" style="
+    padding: 0px;
+    width: auto;
+">
+            <input type="submit" value="Logout" />
+        </form>
     </div>
 
     <!-- Centered registration form -->

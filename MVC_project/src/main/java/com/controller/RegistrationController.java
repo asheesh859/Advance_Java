@@ -31,6 +31,7 @@ public class RegistrationController extends HttpServlet {
 		try {
 		HttpSession session = request.getSession(false);
 		String email = (String)session.getAttribute("email");
+		if(email!=null) {
 		System.out.println(email);
 		DBserviceImp db = new DBserviceImp();
 			db.connectionDB();
@@ -50,6 +51,10 @@ public class RegistrationController extends HttpServlet {
 			request.setAttribute("message", "successfully register");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/registration.jsp");
 			requestDispatcher.forward(request, response);
+		}else {
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+		requestDispatcher.forward(request, response);
+		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
